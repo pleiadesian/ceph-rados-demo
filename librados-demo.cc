@@ -62,7 +62,7 @@ public:
     // Create a instead of scribbling over real data.
     {
       ret = rados.pool_create(pool_name.c_str());
-      if (ret < 0)
+      if (ret < 0 && ret != -EEXIST)
         throw std::runtime_error("couldn't create pool! error " +
                                  std::to_string(ret));
       pool_created = true;
@@ -101,19 +101,23 @@ public:
   // Read an object
   std::string GetBalanced(const std::string &object_name) {
     int ret = 0;
+    int read_len = 4194304;
     librados::bufferlist read_buf;
     librados::ObjectReadOperation read_op;
 
+    read_op.read(0, read_len, &read_buf, nullptr);
     ret = io_ctx.operate(object_name, &read_op, &read_buf,
                          librados::OPERATION_BALANCE_READS);
 
     if (ret < 0)
       throw std::runtime_error("couldn't read object! error " +
                                std::to_string(ret));
-    std::cout << "we read our object " << object_name << ", and got back "
-              << ret << " bytes with contents\n";
+
+    int ret_len = read_buf.length();
     std::string read_string;
-    read_buf.begin().copy(ret, read_string);
+    read_buf.begin().copy(ret_len, read_string);
+    std::cout << "we read our object " << object_name << ", and got back "
+              << ret_len << " bytes with contents\n";
     std::cout << read_string << std::endl;
     return read_string;
   }
