@@ -8,6 +8,15 @@ Install `librados` and `libradospp`
 
 ## Run it
 
+1. Modify the Ceph path in `CMakeLists.txt`
+
+``` text
+# Set this path to your Ceph path
+set(CEPH_HOME /home/wzl/ceph)
+```
+
+2. Build and run
+
 ``` bash
 mkdir -p build
 cd build
