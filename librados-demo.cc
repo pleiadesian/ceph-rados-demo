@@ -138,8 +138,8 @@ public:
 };
 
 int main(int argc, const char **argv) {
-  std::string hello = "hello world";
-  std::string object_name = "hello_object";
+  std::string hello = "HelloWorld";
+  std::string object_name = "HelloWorld";
 
   try {
     std::unique_ptr<RadosManager> rm = std::make_unique<RadosManager>();
@@ -150,4 +150,6 @@ int main(int argc, const char **argv) {
     std::cout << e.what() << std::endl;
     return EXIT_FAILURE;
   }
+
+  return 0;
 }

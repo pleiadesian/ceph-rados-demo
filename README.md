@@ -25,8 +25,8 @@ we just parsed our config options
 we just connected to the rados cluster
 we just created a new pool named hello_world_pool
 we just created an ioctx for our pool
-we just wrote new object hello_object, with contents
-hello world
-we read our object hello_object, and got back 11 bytes with contents
-hello world
+we just wrote new object HelloWorld, with contents
+HelloWorld
+we read our object HelloWorld, and got back 11 bytes with contents
+HelloWorld
 ```
