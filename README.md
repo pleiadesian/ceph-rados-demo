@@ -15,3 +15,18 @@ cmake ..
 make
 ./demo -c $PATH_TO_CEPH_CFG
 ```
+
+## Output
+
+``` bash
+$ ./demo -c /home/wzl/ceph/build/ceph.conf
+we just set up a rados cluster object
+we just parsed our config options
+we just connected to the rados cluster
+we just created a new pool named hello_world_pool
+we just created an ioctx for our pool
+we just wrote new object hello_object, with contents
+hello world
+we read our object hello_object, and got back 11 bytes with contents
+hello world
+```
